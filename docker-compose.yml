@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+  ghost:
+    container_name: {your_project_name}-ghost
+    image: ghost:1.14-alpine
+    restart: always
+    volumes:
+      - ./public/ghost:/var/lib/ghost/content
+      - ./config/ghost/production.json:/var/lib/ghost/config.production.json
+    environment:
+      - NODE_ENV=production
+
+  letsencrypt:
+    container_name: {your_project_name}-letsencrypt
+    image: kvaps/letsencrypt-webroot
+    restart: always
+    volumes:
+      - ./config/certs:/etc/letsencrypt
+      - ./public/letsencrypt:/tmp/letsencrypt
+    environment:
+      - DOMAINS={your_domain_name} www.{your_domain_name}
+      - EMAIL=contact@{your_domain_name}
+      - WEBROOT_PATH=/tmp/letsencrypt
+      - EXP_LIMIT=30
+      - CHECK_FREQ=30
