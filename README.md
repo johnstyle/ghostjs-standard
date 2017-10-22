@@ -6,6 +6,8 @@ Find all occurence of `{your_domain_name}` and replace by your domain name.
 
 Find all occurence of `{your_server_ip}` and replace by your server IP.
 
+Find all occurence of `{your_gtm_id}` and replace by your GTM ID.
+
 ## SSL Configuration
     
     openssl dhparam -out ./config/certs/dhparam.pem 2048
